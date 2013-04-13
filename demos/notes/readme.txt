@@ -1,0 +1,1 @@
+Demo of using localStorage & custom theme

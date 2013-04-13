@@ -1,0 +1,28 @@
+CACHE MANIFEST
+# Manifest Version No : 1
+
+CACHE:
+
+contacts.html
+../../emy/emy.js
+../../emy/emy.css
+
+../../emy/themes/ios/main.css
+../../emy/themes/ios/backButton.png
+../../emy/themes/ios/backButtonBg.png
+../../emy/themes/ios/backButtonSel.png
+../../emy/themes/ios/backButtonBgSel.png
+../../emy/themes/ios/listArrow.png
+../../emy/themes/ios/loading.gif
+
+../../emy/plugins/cache-manager/cache-manager.js
+
+images/apple-touch-icon-precomposed.png
+
+offline.html
+
+NETWORK:
+*
+
+FALLBACK:
+search.php      offline.html
