@@ -137,10 +137,6 @@ header.toolbar #backButton::before {
   background: 	url(backButton.png) no-repeat top left;
   background-size:	auto 100%;
 }
-header.toolbar #backButton:active,
-header.toolbar #backButton[selected] {
-  background-image: url(backButtonBgSel.png);
-}
 header.toolbar #backButton:active::before,
 header.toolbar #backButton[selected]::before {
   background-image: url(backButtonSel.png);
