@@ -229,7 +229,6 @@ window.fbapp = {
 		fbapp.showLoader('Getting photos from this album');
 		FB.api('/'+albumId+'/photos', function(response) {
       var photos = response.data;
-      console.log(response.data);
       if(photos) {
         var a='';
 				for(var i=0,inb=photos.length;i<inb;i++)
@@ -253,7 +252,7 @@ window.fbapp = {
               comments += '<p class="comment"><img src="https://graph.facebook.com/'+photos[i].comments.data[c].from.id+'/picture?type=square"><span><em>'+photos[i].comments.data[c].from.name+'</em> '+photos[i].comments.data[c].message+'</span></p>';
             }
           }
-					a += '<li><div><img src="' + img + '"><p>' + photos[i].name + '</p>'+comments+'</div></li>'+"\n";
+					a += '<li><div><img src="' + img + '"><p>' + ((photos[i].name)?photos[i].name:'') + '</p>'+comments+'</div></li>'+"\n";
 				}
 				emy.$('#photos').setAttribute('data-title', albumName);
 				emy.$('#photosList').innerHTML = a;
