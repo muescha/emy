@@ -1,7 +1,7 @@
 window.fbapp = {
 
 	authResponse : null,
-	scope : 'email, user_likes, user_birthday, user_hometown, user_location, user_photos, photo_upload, publish_checkins',
+	scope : 'email, user_likes, user_photos',
 
 	showLoader : function(txt)
 	{
@@ -140,27 +140,6 @@ window.fbapp = {
 		);
 	},
 
-	sendtofriend : function(friendid)
-	{
-		fbapp.showLoader('Send to friend...');
-		FB.ui(
-		  {
-			method: 'send',
-			to: friendid,
-			link: 'http://www.remi-grumeau.com/projects/emy/demos/facebook/',
-			display: 'popup',
-			show_error: false
-		  },
-		  function(response) {
-			if (response) {
-			  alert('Message was published.');
-			} else {
-			  alert('Message was not published.');
-			}
-		  }
-		);
-	},
-
 	getFriendsList : function()
 	{
 		fbapp.showLoader('Loading friends list...');
@@ -207,8 +186,6 @@ window.fbapp = {
 				emy.$('#friendPic').src = 'https://graph.facebook.com/' + uid + '/picture?type=normal';
 				emy.$('#friendPostWall').innerHTML = (response.gender=="female")?"Post on her wall":"Post on his wall";
 				emy.$('#friendPostWall').href = "https://www.facebook.com/dialog/feed?app_id=342091325902549&link=http://www.remi-grumeau.com/projects/emy/demos/facebook/&picture=http://www.remi-grumeau.com/projects/emy/demos/facebook/images/128x128.png&name=Emy%20-%20Efficient%20Mobile%20librarY&redirect_uri=http://www.remi-grumeau.com/projects/emy/demos/facebook/)";
-				emy.$('#friendSendMessage').innerHTML = (response.gender=="female")?"Send her a message":"Send him a message";
-				emy.$('#friendSendMessage').href = "javascript:fbapp.sendtofriend("+uid+")";
 				fbapp.hideLoader();
 				emy.gotoView('friend');
 			}

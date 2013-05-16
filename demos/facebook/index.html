@@ -41,6 +41,7 @@
 
 
     <section id="home" data-title="Facebook App" selected="true" class="login">
+    	<p><img src="images/apple-touch-icon-precomposed.png"></p>
        <a href="" id="userLoginBtn" class="mainButton facebook" onclick="fbapp.login()">Login</a>
     </section>
 
@@ -67,7 +68,6 @@
       </div>
     </fieldset>
     <a class="mainButton" id="friendPostWall" href="javascript:;" target="_blank">Post on his/her wall</a>
-    <a class="mainButton" id="friendSendMessage" href="javascript:;" target="_blank">Send him/her a message</a>
   </section>
 
 
@@ -156,6 +156,11 @@
       cookie     : false,
       xfbml      : false
     });
+    FB.getLoginStatus(function(response) {
+	  if(response.authResponse) {
+	    fbapp.userLogin(response);
+	  }
+	});
   };
 
   (function(d, debug){
