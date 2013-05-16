@@ -136,7 +136,21 @@
 
 
 <script>
-  window.fbAsyncInit = function() {
+  // Avoid relying on broken Facebook fbAsyncInit
+  var isLoading = 0;
+  window.fbAsyncInit = function()
+  {  if(isLoading!=1) { appInit(); } }
+
+  if(document.addEventListener ) {
+    document.addEventListener( "DOMContentLoaded", function() {
+      setTimeout(function(){ if(isLoading!=1){appInit();} },100);
+      document.removeEventListener( "DOMContentLoaded", arguments.callee, false );
+    }, false );
+  }
+
+  function appInit()
+  {
+    isLoading = 1;
     FB.init({
       appId      : '342091325902549',
       status     : true,
