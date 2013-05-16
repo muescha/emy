@@ -1,6 +1,7 @@
 window.fbapp = {
 
 	authResponse : null,
+	scope : 'email, user_likes, user_birthday, user_hometown, user_location, user_photos, photo_upload, publish_checkins',
 
 	showLoader : function(txt)
 	{
@@ -19,26 +20,45 @@ window.fbapp = {
 		emy.$('#loader').className = 'hide';
 	},
 
+	login : function()
+	{
+		FB.getLoginStatus(function(response)
+		{
+			if (response.status=='connected') {
+				fbapp.userLogin(response);
+			} else {
+				FB.login(function(response)
+				{
+					if (response.status == 'connected') {
+						fbapp.userLogin(response);
+					} else {
+						if(confirm("You have to accept those permissions in order to use this demo app. Log again?")) {
+							fbapp.login();
+						}
+					}
+				}, {scope: fbapp.scope });
+			}
+		});
+
+	},
+
 	handleStatusChange : function(response)
 	{
 		if (response.authResponse)
 		{
 			fbapp.accesstoken = response.authResponse.accessToken;
 			fbapp.userId = response.authResponse.userID;
-
 			emy.$('#userLoginBtn').style.display = 'none';
 			emy.$('#userLogoutBtn').style.display = 'block';
-
-			fbapp.init();
 		}
 	},
 
 	init : function()
 	{
-    fbapp.showLoader('Loading...');
+	    fbapp.showLoader('Loading...');
 		FB.api('/me', function(response)
 		{
-      emy.$('#toolbar').setAttribute('data-hide','false');
+	      emy.$('#toolbar').setAttribute('data-hide','false');
 
 			var a = '<ul id="homeList"><li class="group">My datas</li>'+"\n";
 			a += '<li><a href="javascript:fbapp.getFriendsList()">My friends</a></li>'+"\n";
@@ -60,8 +80,8 @@ window.fbapp = {
 			emy.$('#profileEmail').onclick = function() { window.location = "mailto:"+response.email };
 			emy.$('#profilePic').src = 'https://graph.facebook.com/' + response.id + '/picture?type=normal';
 
-      // hide loader
-      fbapp.hideLoader();
+		  // hide loader
+		  fbapp.hideLoader();
 		});
 	},
 
@@ -72,25 +92,29 @@ window.fbapp = {
         fbapp.showLoader('Log in...');
         if(response.authResponse)
         {
+	        fbapp.accesstoken = response.authResponse.accessToken;
             emy.$('#userLoginBtn').style.display = 'none';
             emy.$('#userLogoutBtn').style.display = 'block';
             // hide loader
             fbapp.hideLoader();
+            fbapp.init();
 	    }
 	},
 
 	userLogout : function()
 	{
 		FB.logout(function(response) {
-			if(response.authResponse) {
-				emy.$('#userLoginBtn').style.display = 'block';
-				emy.$('#userLogoutBtn').style.display = 'none';
-				document.getElementById('homeList').innerHTML = '<li>Please login</li>';
+			emy.$('#toolbar').setAttribute('data-hide','true');
+			emy.$('#userLogoutBtn').style.display = 'none';
 
-				setTimeout(function() {
-					emy.goBack();
-				}, 10);
-			}
+			emy.$('#home').innerHTML = '<p><img src="images/apple-touch-icon-precomposed.png"></p>';
+			var loginBtn = document.createElement('a');
+			loginBtn.id="userLoginBtn";
+			loginBtn.setAttribute('class','mainButton facebook');
+			loginBtn.setAttribute('onclick','fbapp.login()');
+			loginBtn.innerHTML = "Login";
+			emy.$('#home').appendChild(loginBtn);
+
 		});
 	},
 
@@ -340,29 +364,5 @@ window.fbapp = {
 				setTimeout(function() { fbapp.hideLoader() }, 1500);
 			}
 		});
-	},
-
-
+	}
 };
-
-window.fbAsyncInit = function() {
-	FB.init({
-		appId      : '363157200440698', // App ID
-		channelUrl : '//www.remi-grumeau.com/projects/emy/demos/facebook/channel.php', // Channel File
-		status     : true, // check login status
-		cookie     : true, // enable cookies to allow the server to access the session
-		xfbml      : true  // parse XFBML
-	});
-
-	FB.Event.subscribe('auth.statusChange', fbapp.handleStatusChange);
-};
-
-
-// Load the SDK Asynchronously
-(function(d){
-	var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-	if (d.getElementById(id)) {return;}
-	js = d.createElement('script'); js.id = id; js.async = true;
-	js.src = "//connect.facebook.net/en_US/all.js";
-	ref.parentNode.insertBefore(js, ref);
-}(document));

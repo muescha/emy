@@ -41,8 +41,7 @@
 
 
     <section id="home" data-title="Facebook App" selected="true" class="login">
-       <a href="" id="userLoginBtn" class="mainButton facebook" onclick="FB.login(fbapp.userLogin, {scope:'email, user_likes, user_birthday, user_hometown, user_location, user_photos, photo_upload, publish_checkins'});
-">Login</a>
+       <a href="" id="userLoginBtn" class="mainButton facebook" onclick="fbapp.login()">Login</a>
     </section>
 
 	<section id="friends" data-title="My friends">
@@ -163,9 +162,9 @@
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+     js.src = "//connect.facebook.net/en_US/all.js";
      ref.parentNode.insertBefore(js, ref);
-   }(document, /*debug*/ false));
+   }(document, false));
 </script>
 </body>
 </html>

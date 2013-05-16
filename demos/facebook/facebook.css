@@ -2,6 +2,26 @@
     color:                  #dee4f0;
     background:    #39598a;
 }
+#home.login p {
+	text-align:	center;
+}
+#home.login p img {
+	margin:	0 auto;
+	padding-bottom:	1em;
+    -webkit-animation:   'fadein' 600ms cubic-bezier(0,.5, .25, 1);
+    -moz-animation:        'fadein' 600ms cubic-bezier(0,.5, .25, 1);
+    animation:                    fadein 600ms cubic-bezier(0,.5, .25, 1);
+}
+@-webkit-keyframes 'fadein' {
+    0%      { opacity: 0; -webkit-transform: scale(.2);          }
+    30%      { opacity: 0; -webkit-transform: scale(.2);          }
+    100% { opacity: 1;-webkit-transform: scale(1);     }
+}
+@keyframes fadein {
+    0%      { opacity: 0; -webkit-transform: scale(.2);          }
+    30%      { opacity: 0; -webkit-transform: scale(.2);          }
+    100% { opacity: 1;-webkit-transform: scale(1);     }
+}
 
 .mainButton {
     width:        auto;
