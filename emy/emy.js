@@ -38,22 +38,22 @@
 	initialized at: onload.
 	This is set to `true`, console.log is enabled
 	*/
-		logging: false,
+	logging: false,
 
-		/*
+	/*
 	emy.busy
 	initialized at: onload.
 	This is set to `true` if a slide animation is in progress.
 	*/
-		busy: false,
+	busy: false,
 
-		/*
+	/*
 	emy.transitionMode
 	initialized at: onload.
 	Determines which transition mode to use between two screens.
 	Value can be 'css', 'js' or 'none' - if 'css', a test is done onLoad to determine is 'css' transition is supported. If not, value is changed to 'js'.
 	*/
-		transitionMode: 'css',
+	transitionMode: 'css',
 
 		/*
 	emy.ajaxErrHandler
@@ -63,33 +63,47 @@
 	`200`, even including 200-level statuses like `201 Created`, are seen as
 	errors.  A status of `0` is treated as success for file:// URLs).
 	*/
-		ajaxErrHandler: null,
+	ajaxErrHandler: null,
 
-		/*
+	/*
 	emy.httpHeaders
 	initialized at: onload.
 	An object defining headers to be sent with Ajax requests.
 	*/
-		httpHeaders: {
-			"X-Requested-With": "XMLHttpRequest"
-		},
+	httpHeaders: {
+		"X-Requested-With": "XMLHttpRequest"
+	},
 
-		/*
+	/*
 	emy.prefixedProperty
 	initialized at: onload.
 	Vendor prefixed CSS3 events methods for transform, transition and transitionEnd
 	NOTE: This might be removed when more than 90% of daily-used browsers support non-prefixed events
 	*/
-		prefixedProperty: [],
+	prefixedProperty: [],
 
 		/*
 	emy.prefixedProperty
 	initialized at: onload.
 	An array where all plugins should be
 	*/
-		plugin: [],
+	plugin: [],
 
-		/*
+	/*
+	emy.ready
+	initialized at: onload.
+	Determines if Emy has been initialized yet (if the init() function has been already loaded)
+	*/
+	ready : false,
+
+	/*
+	emy.init
+	Loads private function init()
+	*/
+	 init : function() {
+		init();
+	 },
+	/*
 	emy.showView(view[, backwards=false])
 	`showView()` should probably be an internal function, outside callers should
 	call `showViewById()` instead. `showView()` does NOT set the busy flag because
@@ -479,8 +493,8 @@
 		},
 
 		/*
-	Performs a console.log if browser supports it
-	*/
+		Performs a console.log if browser supports it
+		*/
 		log: function() {
 			if ((window.console != undefined) && emy.logging==true) console.log.apply(console, arguments);
 		}
@@ -488,98 +502,108 @@
 
 	// *************************************************************************************************
 
-	/*
-load: On Load
+/*
+load: On Load event
+*/
+	addEventListener("load", init, false);
+
+/*
+init: On Load
 On load, emy will determine which view to display primarily based on
 the anchor part of the URL (everything after `#_`) and secondarily based on the
 top-level (child of the `body`) element with the `selected` attribute set to
 `true`. If these both exist, emy.showView() will be called twice, but the
 anchor-based load will win because it is done second.
 */
-	addEventListener("load", function(event) {
-		var a = document.createElement('div').style;
-		prefix = (a.WebkitTransform == '') ? 'webkit' : (a.MozTransform == '') ? 'moz' : (a.msTransform == '') ? 'ms' : (a.transform == '') ? 'none' : null;
-		if (emy.transitionMode == 'css') emy.transitionMode = (prefix) ? 'css' : 'js';
-		if (prefix == 'webkit') {
-			emy.prefixedProperty['transform'] = 'webkitTransform';
-			emy.prefixedProperty['transformDuration'] = 'webkitTransformDuration';
-			emy.prefixedProperty['transitionEnd'] = 'webkitTransitionEnd';
-			emy.prefixedProperty['animationStart'] = 'webkitAnimationStart';
-			emy.prefixedProperty['animationDuration'] = 'webkitAnimationDuration';
-			emy.prefixedProperty['animationEnd'] = 'webkitAnimationEnd';
-		} else if (prefix == 'moz') {
-			emy.prefixedProperty['transform'] = 'MozTransform';
-			emy.prefixedProperty['transformDuration'] = 'MozTransformDuration';
-			emy.prefixedProperty['transitionEnd'] = 'transitionend';
-			emy.prefixedProperty['animationStart'] = 'animationstart';
-			emy.prefixedProperty['animationDuration'] = 'animationduration';
-			emy.prefixedProperty['animationEnd'] = 'animationend';
-		} else if (prefix == 'ms') {
-			emy.prefixedProperty['transform'] = 'msTransform';
-			emy.prefixedProperty['transformDuration'] = 'msTransformDuration';
-			emy.prefixedProperty['transitionEnd'] = 'transitionend';
-			emy.prefixedProperty['animationStart'] = 'MSAnimationStart';
-			emy.prefixedProperty['animationDuration'] = 'MSAnimationDuration';
-			emy.prefixedProperty['animationEnd'] = 'MSAnimationEnd';
-		} else if (prefix == 'none') {
-			emy.prefixedProperty['transform'] = 'msTransform';
-			emy.prefixedProperty['transformDuration'] = 'msTransformDuration';
-			emy.prefixedProperty['transitionEnd'] = 'transitionend';
-			emy.prefixedProperty['animationStart'] = 'MSAnimationStart';
-			emy.prefixedProperty['animationDuration'] = 'MSAnimationDuration';
-			emy.prefixedProperty['animationEnd'] = 'MSAnimationEnd';
+
+	function init()
+	{
+		if(!emy.ready)
+		{
+			emy.ready=true;
+			var a = document.createElement('div').style;
+			prefix = (a.WebkitTransform == '') ? 'webkit' : (a.MozTransform == '') ? 'moz' : (a.msTransform == '') ? 'ms' : (a.transform == '') ? 'none' : null;
+			if (emy.transitionMode == 'css') emy.transitionMode = (prefix) ? 'css' : 'js';
+			if (prefix == 'webkit') {
+				emy.prefixedProperty['transform'] = 'webkitTransform';
+				emy.prefixedProperty['transformDuration'] = 'webkitTransformDuration';
+				emy.prefixedProperty['transitionEnd'] = 'webkitTransitionEnd';
+				emy.prefixedProperty['animationStart'] = 'webkitAnimationStart';
+				emy.prefixedProperty['animationDuration'] = 'webkitAnimationDuration';
+				emy.prefixedProperty['animationEnd'] = 'webkitAnimationEnd';
+			} else if (prefix == 'moz') {
+				emy.prefixedProperty['transform'] = 'MozTransform';
+				emy.prefixedProperty['transformDuration'] = 'MozTransformDuration';
+				emy.prefixedProperty['transitionEnd'] = 'transitionend';
+				emy.prefixedProperty['animationStart'] = 'animationstart';
+				emy.prefixedProperty['animationDuration'] = 'animationduration';
+				emy.prefixedProperty['animationEnd'] = 'animationend';
+			} else if (prefix == 'ms') {
+				emy.prefixedProperty['transform'] = 'msTransform';
+				emy.prefixedProperty['transformDuration'] = 'msTransformDuration';
+				emy.prefixedProperty['transitionEnd'] = 'transitionend';
+				emy.prefixedProperty['animationStart'] = 'MSAnimationStart';
+				emy.prefixedProperty['animationDuration'] = 'MSAnimationDuration';
+				emy.prefixedProperty['animationEnd'] = 'MSAnimationEnd';
+			} else if (prefix == 'none') {
+				emy.prefixedProperty['transform'] = 'msTransform';
+				emy.prefixedProperty['transformDuration'] = 'msTransformDuration';
+				emy.prefixedProperty['transitionEnd'] = 'transitionend';
+				emy.prefixedProperty['animationStart'] = 'MSAnimationStart';
+				emy.prefixedProperty['animationDuration'] = 'MSAnimationDuration';
+				emy.prefixedProperty['animationEnd'] = 'MSAnimationEnd';
+			}
+
+			var view = emy.getSelectedView();
+			var locView = getViewFromLocation();
+
+			if (view) {
+				originalView = view;
+				emy.showView(view);
+			}
+
+			if (locView && (locView != view)) emy.showView(locView);
+
+			//set resize handler onorientationchange if available, otherwise use onresize
+			if (typeof window.onorientationchange == "object") window.onorientationchange = resizeHandler;
+			else window.onresize = resizeHandler;
+
+			// use modern onhashchange listener for navigation, fallback to listener if not supported
+			if ("onhashchange" in window) window.onhashchange = checkLocation;
+			else checkTimer = setInterval(checkLocation, 300);
+
+			setTimeout(function() {
+				preloadImages();
+				checkLocation();
+				fitHeight()
+			}, 1);
 		}
-
-		var view = emy.getSelectedView();
-		var locView = getViewFromLocation();
-
-		if (view) {
-			originalView = view;
-			emy.showView(view);
-		}
-
-		if (locView && (locView != view)) emy.showView(locView);
-
-		//set resize handler onorientationchange if available, otherwise use onresize
-		if (typeof window.onorientationchange == "object") window.onorientationchange = resizeHandler;
-		else window.onresize = resizeHandler;
-
-		// use modern onhashchange listener for navigation, fallback to listener if not supported
-		if ("onhashchange" in window) window.onhashchange = checkLocation;
-		else checkTimer = setInterval(checkLocation, 300);
-
-		setTimeout(function() {
-			preloadImages();
-			checkLocation();
-			fitHeight()
-		}, 1);
-
-	}, false);
+	}
 
 	/*
-click: Link Click Handling
-emy captures all clicks on `a` elements and goes through a series of checks to
-determine what to do:
+	click: Link Click Handling
+	emy captures all clicks on `a` elements and goes through a series of checks to
+	determine what to do:
 
-1. If the link has a `href="#..."`, emy will navigate to the panel ID specified
-   after the # (no underscore).
-2. If the link's ID is `backButton`, emy will navigate to the previous screen
-   (see `emy.goBack()`).
-3. If the link has a `type="submit"`, emy will find the parent `form` element,
-   gather up all the input values and submit the form via AJAX (see
-   `emy.showViewByHref()`).
-4. If the link has a `type="cancel"`, emy will cancel the parent `form` element
-   dialog.
-5. If the link has a `target="_replace"`, emy will do an AJAX call based on the
-   href of the link and replace the panel that the link is in with the contents
-   of the AJAX response.
-6. If the link is a native URL (see `emy.isNativeURL()`), emy will do nothing.
-7. If the link has a `target="_webapp"`, emy will perform a normal link,
-   navigating completely away from the emy app and pointing the browser to the
-   linked-to webapp instead.
-8. If there is no `target` attribute, emy will perform a normal (non-replace)
-   AJAX slide (see `emy.showViewByHref()`).
-*/
+	1. If the link has a `href="#..."`, emy will navigate to the panel ID specified
+	   after the # (no underscore).
+	2. If the link's ID is `backButton`, emy will navigate to the previous screen
+	   (see `emy.goBack()`).
+	3. If the link has a `type="submit"`, emy will find the parent `form` element,
+	   gather up all the input values and submit the form via AJAX (see
+	   `emy.showViewByHref()`).
+	4. If the link has a `type="cancel"`, emy will cancel the parent `form` element
+	   dialog.
+	5. If the link has a `target="_replace"`, emy will do an AJAX call based on the
+	   href of the link and replace the panel that the link is in with the contents
+	   of the AJAX response.
+	6. If the link is a native URL (see `emy.isNativeURL()`), emy will do nothing.
+	7. If the link has a `target="_webapp"`, emy will perform a normal link,
+	   navigating completely away from the emy app and pointing the browser to the
+	   linked-to webapp instead.
+	8. If there is no `target` attribute, emy will perform a normal (non-replace)
+	   AJAX slide (see `emy.showViewByHref()`).
+	*/
 	addEventListener("click", function(event) { /* an iOS6 bug stops the timer when a new tab fires an alert - this fixes the issue */
 		if (!emy.busy && !("onhashchange" in window)) checkTimer = setInterval(checkLocation, 300);
 
