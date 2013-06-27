@@ -17,7 +17,6 @@ body {
 	margin: 			    0;
 	color: 				    #fff;
 	background:  	#15181b;
-	overflow:         	hidden;
 }
 body > *:not(.toolbar) {
     margin: 		0;
