@@ -9,11 +9,8 @@ image.jpg
 ../../apple-touch-icon-precomposed.png
 ../../emy.css
 ../../emy.js
-../../themes/ios/main.css
-../../themes/ios/backButton.png
-../../themes/ios/backButtonSel.png
-../../themes/ios/listArrow.png
-../../themes/ios/loading.gif
+../../themes/emy/main.css
+../../themes/emy/loading.gif
 
 NETWORK:
 *

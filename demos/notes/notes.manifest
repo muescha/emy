@@ -2,17 +2,18 @@ CACHE MANIFEST
 # Manifest Version No : 1.2
 
 CACHE:
-../../emy/emy.js
-../../emy/emy.css
+../emy/emy.js
+../emy/emy.css
 
-../../emy/themes/ios/main.css
-../../emy/themes/ios/backButton.png
-../../emy/themes/ios/backButtonBack.png
-../../emy/themes/ios/backButtonSel.png
-../../emy/themes/ios/loading.gif
-../../emy/themes/ios/selection.png
+../emy/themes/ios/main.css
+../emy/themes/ios/backButton.png
+../emy/themes/ios/backButtonBack.png
+../emy/themes/ios/backButtonSel.png
+../emy/themes/ios/loading.gif
+../emy/themes/ios/selection.png
 
-../../emy/apple-touch-icon-precomposed.png
+images/apple-touch-icon-precomposed.png
+images/favicon.ico
 
 notes.html
 notes.js

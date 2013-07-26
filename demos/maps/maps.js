@@ -161,7 +161,7 @@ window.mapApp = {
 	},
 
 
-  // this credential key is linked to http://www.remi-grumeau.com/projects/emy/demos/maps/maps.html url.
+  // this credential key is linked to http://www.emy-library.org/demos/maps/maps.html url.
   // to get yours, visit bingmapsportal.com/
 	loadBingMap : function()
 	{

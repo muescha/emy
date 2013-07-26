@@ -126,8 +126,8 @@ window.fbapp = {
 		  {
 			method: 'feed',
 			name: 'EMY - Efficient Mobile LibrarY',
-			link: 'http://remi-grumeau.com/projects/emy/demos/facebook/',
-			picture: 'http://remi-grumeau.com/projects/emy/demos/facebook/images/128x128.png',
+			link: 'http://www.emy-library.org/demos/facebook/',
+			picture: 'http://www.emy-library.org/demos/facebook/images/128x128.png',
 			to: friendid
 		  },
 		  function(response) {
@@ -185,7 +185,7 @@ window.fbapp = {
 				emy.$('#friendFirstName').value = response.first_name;
 				emy.$('#friendPic').src = 'https://graph.facebook.com/' + uid + '/picture?type=normal';
 				emy.$('#friendPostWall').innerHTML = (response.gender=="female")?"Post on her wall":"Post on his wall";
-				emy.$('#friendPostWall').href = "https://www.facebook.com/dialog/feed?app_id=342091325902549&link=http://www.remi-grumeau.com/projects/emy/demos/facebook/&picture=http://www.remi-grumeau.com/projects/emy/demos/facebook/images/128x128.png&name=Emy%20-%20Efficient%20Mobile%20librarY&redirect_uri=http://www.remi-grumeau.com/projects/emy/demos/facebook/)";
+				emy.$('#friendPostWall').href = "https://www.facebook.com/dialog/feed?app_id=342091325902549&link=http://www.emy-library.org/demos/facebook/&picture=http://www.emy-library.org/demos/facebook/images/128x128.png&name=Emy%20-%20Efficient%20Mobile%20librarY&redirect_uri=http://www.emy-library.org/demos/facebook/)";
 				fbapp.hideLoader();
 				emy.gotoView('friend');
 			}
@@ -294,8 +294,8 @@ window.fbapp = {
 			if(albumId) {
 				fbapp.showLoader('Adding the Emy logo to this album');
 				FB.api('/'+albumId+'/photos', 'post', {
-					message : 	'EMY - Efficient Mobile librarY http://www.remi-grumeau.com/projects/emy ',
-					url: 		'http://www.remi-grumeau.com/projects/emy/demos/facebook/images/share-image.jpg'
+					message : 	'EMY - Efficient Mobile librarY - http://www.emy-library.org ',
+					url: 		'http://www.emy-library.org/demos/facebook/images/share-image.jpg'
 				}, function(e) {
 					if(e!=undefined)
 						fbapp.hideLoader();

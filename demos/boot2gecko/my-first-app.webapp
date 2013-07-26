@@ -3,11 +3,11 @@
   "size": "172496",
   "name": "Emy demo",
   "description": "My first Boot2Gecko app using Emy",
-  "launch_path": "/projects/emy/demos/boot2gecko/my-first-app.html",
+  "launch_path": "/demos/boot2gecko/my-first-app.html",
   "locales": {
     "fr_FR": {
       "name": "Emy démo",
-      "release_notes": "Première installation"
+      "release_notes": "Première version"
     },
     "en_EN": {
       "name": "Emy demo",

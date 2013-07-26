@@ -3,14 +3,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>Emy Boot2Gecko Demo</title>
+	<meta name="description" content="A Firefox OS demo app using Emy library">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<link rel="stylesheet" type="text/css" href="../../emy/emy.css">
-	<link rel="stylesheet" type="text/css" href="../../emy/themes/ios/main.css">
-	<script type="application/x-javascript" src="../../emy/emy.js"></script>
+	<link rel="stylesheet" type="text/css" href="../emy/emy.css">
+	<link rel="stylesheet" type="text/css" href="../emy/themes/emy/main.css">
+	<script type="application/x-javascript" src="../emy/emy.js"></script>
 
 	<script type="application/x-javascript">
     function installMyApp() {
-        var request = navigator.mozApps.install("http://www.remi-grumeau.com/projects/emy/demos/boot2gecko/my-first-app.webapp");
+        var request = navigator.mozApps.install("http://www.emy-library.org/demos/boot2gecko/my-first-app.webapp");
         request.onsuccess = function() {
             // App is now installed
             document.getElementById('installBtn').style.display='none';
