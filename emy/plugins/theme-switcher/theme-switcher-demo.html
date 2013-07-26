@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Theme Switcher plugin Demo - Emy</title>
-	<meta name="description" content="Theme Switcher plugin Demo - Emy">
+	<meta name="description" content="Theme Switcher plugin demo for Emy library">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="msapplication-tap-highlight" content="no">
 
@@ -38,10 +38,10 @@
 	    <div class="row">
 	      <label for="ts">Theme</label>
 	      <select size="1" name="ts" id="ts" onchange="emy.plugin.themeSwitcher.setTheme(ts.value)">
-	        <option value="ios">iOS Theme (by default)</option>
+	        <option value="emy" selected="selected">Emy Theme (by default)</option>
+	        <option value="ios">iOS Theme</option>
 	        <option value="android">Android Theme</option>
 	        <option value="windowsphone">WindowsPhone Theme</option>
-	        <option value="emy">Emy Theme</option>
 	      </select>
 	      <script>if(window.localStorage && localStorage.getItem('emy-theme')) { emy.$('#ts').value=localStorage.getItem('emy-theme'); }</script>
 	    </div>
