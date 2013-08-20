@@ -10,22 +10,22 @@ window.igapp = {
 
 	showLoader : function(txt)
 	{
-		emy.log('show loader: '+txt);
 		if(!emy.$('#loader')) {
 			var a = document.createElement('div');
 			a.id="loader";
+			a.setAttribute("class","hide");
 			a.innerHTML = '<span>'+txt+'</span>';
 			document.body.appendChild(a);
 		} else {
 			emy.$('#loader').innerHTML = '<span>'+txt+'</span>';
-			emy.$('#loader').className = '';
 		}
-		emy.$('#loader').style.top = (document.body.scrollTop)+'px';
+		emy.$('#loader').style.display = '';
+		setTimeout(function() { emy.$('#loader').className = ''; },1);
 	},
 
 	hideLoader : function() {
-		emy.log('hide loader');
 		emy.$('#loader').className = 'hide';
+		setTimeout(function() { emy.$('#loader').style.display = 'none'; },300);
 	},
 
 
@@ -279,7 +279,8 @@ window.igapp = {
         var likeClass = (b.user_has_liked)?'liked':'like';
         if(b.likes.count<8) {
             a += '		<p id="like'+b.id+'" class="'+likeClass+'">';
-            for(var l=0,lnb=b.likes.count;l<lnb;l++) {
+            for(var l=0,lnb=b.likes.data.length;l<lnb;l++) {
+            	console.log(l);
                 a += '<a class="user" href="javascript:igapp.getProfile('+likes[l].id+')">@'+likes[l].username+'</a>, ';
             }
             a = a.substr(0, (a.length-2));
@@ -309,8 +310,8 @@ window.igapp = {
 
     showPicture : function()
     {
-
-
+		igapp.showLoader('soon...');
+		setTimeout(igapp.hideLoader, 900);
     },
 
 
@@ -402,8 +403,9 @@ window.igapp = {
                     for(var i=0,inb=photos.data.length;i<inb;i++) {
                         var pic = document.createElement('a');
                         pic.className='imgThumb';
-                        pic.setAttribute('href','#photo');
-                        pic.setAttribute('data-photoid', photos.data[i].id);
+//                        pic.setAttribute('href','#photo');
+                        pic.setAttribute('href','javascript:igapp.showPicture("'+photos.data[i].id+'")');
+ 						pic.setAttribute('data-photoid', photos.data[i].id);
                         if(photos.data[i].comments.count!=0)
                             pic.setAttribute('title', photos.data[i].comments.data[0].text);
                         pic.innerHTML='<img src="'+photos.data[i].images.thumbnail.url+'">';

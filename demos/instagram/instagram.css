@@ -12,7 +12,8 @@ a.hashtag {
     font-weight:         normal;
     font-size:               1em;
     padding:                .6em;
-	background-image:		-webkit-gradient(linear, left top, left bottom, from(#4780ad), to(#2a6491) );
+    background:		  #2a6491;
+	background-image:			-webkit-gradient(linear, left top, left bottom, from(#4780ad), to(#2a6491) );
 	background-image:		    -webkit-linear-gradient(270deg, #4780ad 0%, #2a6491 100%);
 	background-image:		    -moz-linear-gradient(270deg, #4780ad 0%, #2a6491 100%);
 	background-image:		    linear-gradient(180deg, #4780ad 0%, #2a6491 100%);
@@ -33,34 +34,58 @@ a.hashtag {
 	box-shadow:         inset 0 .1em .2em #207430;
 }
 
-header.toolbar h1 {
-    font-size:  1.2em;
-    color:          #dfe7ef;
+header.toolbar {
+    background:		  					#2a6491;
+	background-image:			-webkit-gradient(linear, left top, left bottom, from(#4780ad), to(#2a6491) );
+	background-image:		    -webkit-linear-gradient(270deg, #4780ad 0%, #2a6491 100%);
+	background-image:		    -moz-linear-gradient(270deg, #4780ad 0%, #2a6491 100%);
+	background-image:		    linear-gradient(180deg, #4780ad 0%, #2a6491 100%);
 }
-
+header.toolbar h1 {
+    font-size:  	1.2em;
+    color:          	#dfe7ef;
+    padding:		0.5em 0;
+}
+header.toolbar .button,
+header.toolbar #backButton,
+header.toolbar #backButton[selected]::before, 
+header.toolbar #backButton[selected]::after, 
+header.toolbar #backButton:active::before, 
+header.toolbar #backButton:active::after {
+	color:			#fff;
+	background:		#0d3257;
+}
+header.toolbar .button[selected], 
+body > .toolbar .button:active {
+	color:			#0d3257;
+	background:		#fff;
+}
 
 #loader {
 	display:	block;
-	position:	absolute;
-	top:			0px;
-	text-align:	center;
-	z-index:	9999;
+	position:	fixed;
+	top:			0;
+	z-index:		8;
+	-webkit-transform:	translateY(0);
+	-moz-transform:		translateY(0);
+	transform:					translateY(0);
+	-webkit-transition:	-webkit-transform 250ms ease-in-out;
+	-moz-transition:		-moz-transform 250ms ease-in-out;
+	transition:					transform 250ms ease-in-out;
+}
+#loader.hide {
+	-webkit-transform:	translateY(-3em);
+	-moz-transform:		translateY(-3em);
+	transform:					translateY(-3em);
 }
 #loader span {
 	display:		block;
-	width:			80%;
-	color:			#fff;
-	margin:			50px auto 0 auto;
-	padding:		1em 0;
+	width:			100%;
+	color:				#fff;
+	margin:		0;
+	padding:		.6em;
+	text-align:	center;
 	background:	rgba(0,0,0,.7);
-	z-index:		9999;
-	-webkit-border-radius:	0.6em;
-	-moz-border-radius:			0.6em;
-	-o-border-radius:				0.6em;
-	border-radius:					0.6em;
-}
-#loader.hide {
-	display:	none;
 }
 
 section.blueBg {
