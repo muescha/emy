@@ -23,6 +23,7 @@ body > section {
 
 /******************************** HEADER *******************************************************/
 header.toolbar {
+	position:				fixed;
     height: 				    2.8em;
     z-index:				9;
     background: 		#e13636;
