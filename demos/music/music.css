@@ -11,10 +11,11 @@ body[orient="landscape"] ul > li.listicon {
 }
 ul li.listicon img {
 	display:	inline-block;
-	float:		left;
+	float:			left;
 	width:		auto;
 	height:		2.4em;
-	margin:		-0.6em -0.65em -0.65em -3em;
+	margin:	-0.6em -0.65em -0.65em -3em;
+	border:		0;
 }
 
 #songs li:nth-child(2n) {
@@ -23,29 +24,61 @@ ul li.listicon img {
 #player {
 	background:		#000;
 }
+#player .cover, #player > div.player {
+	float:			left;
+}
 #player .cover {
-	width:			100%;
-	text-align:		center;
+	position:				relative;
+	width:					100%;
+	padding-top:		100%;
+	text-align:			center;
+	overflow:				hidden;
 	background:		#d8e1e8;
+	-webkit-transform-origin:	0 50%;
+	transform-origin:						0 50%;
+	-webkit-transition:	-webkit-transform 250ms ease-in-out;
+	transition:					transform 250ms ease-in-out;
 }
 #player .cover img {
-	width:			80%;
-	max-width:		480px;
+	position:				absolute;
+	top:						50%;
+	left:						50%;
+	width:					80%;
+	margin-top:		-40%;
+	margin-left:		-40%;
+}
+#player > div.player {
+	width:					100%;
+	margin-top:		0px;
+	height:					auto;
+	text-align:			center;
+	background: 		-webkit-gradient(linear, left top, left bottom, from(#5e5f60), color-stop(.5,#2b2c2d), color-stop(.5,#000), to(#000));
+	background:		-webkit-linear-gradient(-90deg, #5e5f60 0%, #2b2c2d 50%, #000 50%, #000 100%);
+	background:		-moz-linear-gradient(-90deg, #5e5f60 0%, #2b2c2d 50%, #000 50%, #000 100%);
+	background:		linear-gradient(180deg, #5e5f60 0%, #2b2c2d 50%, #000 50%, #000 100%);
 }
 @media screen and (orientation: landscape) {
+	#player .cover, #player > div.player {
+		width:		50%;
+	}
+	#player .cover {
+		padding-top:		50%;
+		background:		transparent;
+		-webkit-transform:		translateX(25%) perspective(1000px) scale(.8) rotateY(20deg);
+		transform:						translateX(25%) perspective(1000px) scale(.8) rotateY(20deg);
+	}
 	#player .cover img {
-		width:		auto;
-		max-height:	180px;
+		width:				100%;
+		max-height:	auto;
+		margin-top:	-50%;
+		margin-left:	-50%;
+	}
+	#player > div.player {
+		padding-top:	3em;
+		background:	none;
 	}
 }
 
-#player > div.player {
-	margin-top:		0px;
-	height:			80px;
-	text-align:		center;
-	background: 	-webkit-gradient(linear, left top, left bottom, from(#5e5f60), color-stop(.5,#2b2c2d), color-stop(.5,#000), to(#000));
-	background:		-moz-linear-gradient(-90deg, #5e5f60 0%, #2b2c2d 50%, #000 50%, #000 100%);
-}
 #player p {
 	width:			100%;
 	height:			50px;
@@ -68,7 +101,8 @@ ul li.listicon img {
 	background-image: url(images/pause.png);
 }
 #player > div.player > span {
-	width:		320px;
-	color:		#fff;
-	font-size:	11px;
+	display:	block;
+	width:		100%;
+	color:			#fff;
+	font-size:	1em;
 }
