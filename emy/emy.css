@@ -18,6 +18,7 @@ body section li > a {
 	-ms-user-select:       text;
 	user-select:                text;
 }
+button { border: 0 }
 img {
 	-ms-interpolation-mode: bicubic;
 }
