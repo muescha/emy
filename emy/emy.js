@@ -370,7 +370,8 @@
 					if (clone) {
 						clone.parentNode.replaceChild(child, clone);
 						docNode = emy.$(child.id);
-					} else docNode = document.body.appendChild(child);
+					} else
+						docNode = document.body.appendChild(child);
 
 					sendEvent("afterinsert", document.body, {
 						insertedNode: docNode
@@ -620,25 +621,6 @@ anchor-based load will win because it is done second.
 					unselect();
 				}, 300);
 				emy.goBack();
-			} else if (link.getAttribute("type") == "submit") {
-				/* Forms with a[type=submit] links are deprecated
-				 * this code will be removed in a future release.
-				 */
-				var form = findParent(link, "form");
-				if (form.target == "_self") { /* Browser submit (with full-view response) */
-					if (typeof form.onsubmit == 'function') {
-						if (form.onsubmit() == true) form.submit();
-					} else form.submit();
-
-					return; // allow default
-				}
-				submitForm(form); // Ajax submit
-			} else if (link.getAttribute("type") == "cancel") {
-				link.setAttribute("selected", "true");
-				setTimeout(function() {
-					unselect();
-				}, 300);
-				cancelDialog(findParent(link, "section"));
 			} else if (link.target == "_replace") {
 				followAjax(link, link);
 			} else if (emy.isNativeUrl(link.href)) {
@@ -672,9 +654,11 @@ anchor-based load will win because it is done second.
 			event.preventDefault();
 		}
 
-		var input = findParent(event.target, "input");
-		if (input && input.type == "submit") {
-			input.setAttribute("submitvalue", input.value);
+		var button = findParent(event.srcElement, "button");
+		if (button && button.getAttribute("type") == "cancel") {
+			var view = findParent(event.srcElement, "section");
+			if(emy.hasClass(view,'dialog'))
+				cancelDialog(view);
 		}
 	}, true);
 
