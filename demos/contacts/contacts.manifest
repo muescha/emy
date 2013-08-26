@@ -1,14 +1,12 @@
 CACHE MANIFEST
-# Manifest Version No : 1.1
+#manifest Version No : 1.4
 
 CACHE:
-
 contacts.html
 ../emy/emy.js
 ../emy/emy.css
 
 ../emy/themes/emy/main.css
-../emy/themes/ios/listArrow.png
 ../emy/themes/ios/loading.gif
 
 ../emy/plugins/cache-manager/cache-manager.js

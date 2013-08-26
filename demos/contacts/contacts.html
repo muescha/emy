@@ -41,9 +41,6 @@
 		-moz-border-radius:		  .8em;
 		border-radius:		      .8em;
 	}
-	#cancelBtn, #submitBtn {
-	  display:  none;
-	}
 	</style>
 
   <script type="text/javascript">
@@ -63,12 +60,10 @@
   <header id="toolbar" class="toolbar">
     <div>
       <a id="backButton" class="button" href="#">Back</a>
-      <a id="cancelBtn" class="button">Cancel</a>
     </div>
     <h1 id="viewTitle">Contacts</h1>
     <div>
       <a id="searchBtn" class="button" href="#search">Search</a>
-      <a id="submitBtn" class="button" href="#search">Submit</a>
     </div>
   </header>
 
@@ -124,8 +119,8 @@
     </ul>
   </section>
 
-  <section id="contact" data-title="Now Playing" class="panel">
-		<h2>ContactName</h2>
+  <section id="contact" data-title="Contact details" class="panel">
+		<h2>Contact Name</h2>
 		<fieldset>
 			<div class="row">
 				<label>phone</label>
@@ -142,6 +137,7 @@
   <section id="search" data-title="Search" class="dialog">
 
     <header class="toolbar">
+     <div><button type="cancel" class="button blueButton">Cancel</button></div>
       <h1>Search</h1>
       <div><button type="submit" form="myform" class="button blueButton">Submit</button></div>
     </header>
