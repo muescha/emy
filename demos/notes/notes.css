@@ -6,62 +6,65 @@
 /***** changing default theme *****/
 body,
 body > *:not(.toolbar) {
-    background: 		#fbf78e url(images/notes-bg.png) repeat top center!important;	
+    background: 		#feea65;	
 }
 body > .toolbar {
-    background: 		#5d3c2d url(images/notes-toolbar.png) repeat-x top center!important;
+    background: 		#563c34;
 }
-header.toolbar #backButton {
-  background-image:     url(images/backButtonBg.png);
+header.toolbar h1 {
+	color:			#ddd;
 }
-header.toolbar #backButton::before {
-  background-image:     url(images/backButton.png);
+body > .toolbar .button,
+body > .toolbar #backButton {
+	color:						#cdaba0;
+	background: 		#3c2a24;
+	border: 				0;
+	box-shadow: 		inset -.2em 0 .2em rgba(0,0,0,.6);
 }
-header.toolbar #backButton:active,
-header.toolbar #backButton[selected] {
-  background-image: url(images/backButtonBgSel.png);
+body > .toolbar h1+div .button {
+	box-shadow: 		inset .2em 0 .2em rgba(0,0,0,.6);
 }
-header.toolbar #backButton:active::before,
-header.toolbar #backButton[selected]::before {
-  background-image: url(images/backButtonSel.png);
+body > .toolbar #backButton[selected],
+body > .toolbar #backButton:active,
+header.toolbar .button[selected], 
+body > .toolbar .button:active {
+	color: 					#cdaba0;
+	background: 		#000;
 }
-
+header.toolbar #backButton::before, 
+header.toolbar #backButton::after {
+	background:		#cdaba0;
+}
+header.toolbar #backButton:active::before, 
+header.toolbar #backButton:active::after,
+header.toolbar #backButton[selected]::before, 
+header.toolbar #backButton[selected]::after {
+	background:		#cdaba0;
+}
 
 #tlbAdd {
 	padding:			.2em auto;
-	line-height:		.9em;
+	line-height:		.8em;
 }
-#tlbAdd span {
-	font-size:	2em;
+#tlbAdd > span {
+	font-size:		2em;
+	padding:		0 .3em;
 }
 
 #tlbSave {
 	display:	none;
+	color:						#000;
+	background:		#fff;
+	box-shadow: 		none;
 }
 
-body > .toolbar .button {
-	background: 		#49312a;
-	background-image:	-webkit-gradient(linear, left top, left bottom, from(#7b594d), color-stop(0.5, #473029), color-stop(0.5, #412c25), to(#452d22) );
-	background-image: 	-webkit-linear-gradient(270deg, #7b594d 0%, #473029 50%, #412c25 50%, #452d22 100%);
-	background-image: 	-moz-linear-gradient(270deg, #7b594d 0%, #473029 50%, #412c25 50%, #452d22 100%);
-	background-image: 	linear-gradient(180deg, #7b594d 0%, #473029 50%, #412c25 50%, #452d22 100%);
-	border-color: 	#34221c;
-	box-shadow: 		0 .1em .1em rgba(255, 255, 255, .5);
+#note_desc {
+	padding:		2.6em .9em .9em .9em;
+	height:			15em;
 }
-header.toolbar .button[selected], 
-body > .toolbar .button:active {
-	background: 		#38221c;
-	background-image:	-webkit-gradient(linear, left top, left bottom, from(#5a423a), to(#21130e) );
-	background-image: 	-webkit-linear-gradient(270deg, #5a423a 0%, #21130e 100%);
-	background-image: 	-moz-linear-gradient(270deg, #5a423a 0%, #21130e 100%);
-	background-image: 	linear-gradient(180deg, #5a423a 0%, #21130e 100%);
-}
-body > .panel > fieldset {
-	-webkit-border-radius:	0;
-	-moz-border-radius:		0;
-	border-radius:					0;
-	background-color:			#fdf4e2;
-	border:			0;
+
+section.panel > :first-child {
+	margin-top:	.2em;
 }
 body > .panel > h2 {
 	color:		#49312a;
@@ -70,24 +73,53 @@ body > .panel > fieldset a {
 	color:		inherit;
 }
 
-/**** custom styles for app ****/
+section > ul > li {
+	border-bottom:	1px solid #c4a51f;
+	overflow:		hidden;
+}
+section > ul > li:first-child {
+	border-top:		0;
+}
+section > ul > li > a {
+	color:			#563c34;
+}
+section > ul > li > a[selected], 
+section > ul > li > a:active, 
+section.panel > ul > li > a[selected], 
+section.panel > ul > li > a:active {
+	color:						#563c34;
+	background:		#fff;
+}
+section > ul > li > a::before,
+section > ul > li > a::after, 
+section > ul > li > a[selected]::before, 
+section > ul > li > a:active::before, 
+section > ul > li > a[selected]::after, 
+section > ul > li > a:active::after,
+section.panel > ul > li > a::before,
+section.panel > ul > li > a::after,
+section.panel > ul > li > a[selected]::before, 
+section.panel > ul > li > a:active::before, 
+section.panel > ul > li > a[selected]::after, 
+section.panel > ul > li > a:active::after {
+	background:	#563c34;
+}
+
 
 input, textarea, select {
 	-moz-outline-style: none;
 	outline: 	none;
 }
+section fieldset > .row > input, 
+section fieldset > .row > textarea, 
+section fieldset > .row > select {
+	color:		#3c2a24;
+}
 fieldset > .row {
 	border:		0;
 }
-fieldset > .row > textarea {
-	padding: 	2.8em 1em 1em 1em;
-}
 #note_title {
 	text-align:	right;
-}
-
-#note_desc {
-	height:		15em;
 }
 
 #inbox ul span {
@@ -104,10 +136,9 @@ fieldset > .row > textarea {
 }
 #inbox ul li a time {
 	position:			absolute;
-	right:					2em;
+	right:					2.5em;
 	margin-top:	.3em;
-	color:					#888;
-	font-size:			.8em;
+	font-size:			.7em;
 	font-weight:	normal;
 }
 
