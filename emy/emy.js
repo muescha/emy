@@ -98,7 +98,8 @@
 
 	/*
 	emy.init
-	Loads private function init()
+	Loads private function init(), automatically loaded by onload event, but you can manually load it
+	This change is really helpful when using Emy inside for a PhoneGap/Cordova app with deviceready event for ex
 	*/
 	 init : function() {
 		init();
