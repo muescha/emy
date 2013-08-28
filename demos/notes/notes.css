@@ -58,11 +58,6 @@ header.toolbar #backButton[selected]::after {
 	box-shadow: 		none;
 }
 
-#note_desc {
-	padding:		2.6em .9em .9em .9em;
-	height:			15em;
-}
-
 section.panel > :first-child {
 	margin-top:	.2em;
 }
@@ -109,6 +104,8 @@ section.panel > ul > li > a:active::after {
 input, textarea, select {
 	-moz-outline-style: none;
 	outline: 	none;
+	font-family:	inherit;
+	font-size:			inherit;
 }
 section fieldset > .row > input, 
 section fieldset > .row > textarea, 
@@ -142,3 +139,11 @@ fieldset > .row {
 	font-weight:	normal;
 }
 
+
+label[for="ipt_desc"] {
+	min-width:	100%;
+}
+#note_desc {
+	padding:		2.6em .6em .6em .6em;
+	height:			15em;
+}
