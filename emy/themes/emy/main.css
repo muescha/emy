@@ -526,6 +526,5 @@ section.panel footer {
 
 /************************************************************************************************/
 #preloader {
-    background-image:	url(loading.gif),
-											    url(listArrowSel.png);
+    background-image:	url(loading.gif);
 }
