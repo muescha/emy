@@ -6,4 +6,4 @@ The goal is not to recreate what JQuery Mobile or Sencha is doing, but to provid
 
 Emy is fully working on iOS, Android, Blackberry, WindowsPhone and even latest Symbian series & Firefox OS.
 
-Demo URL : http://www.remi-grumeau.com/projects/emy/demos/
+Demo URL : http://www.emy-library.org/demos/
