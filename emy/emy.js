@@ -480,22 +480,28 @@
 	Use emy.$('a.myClass') to select all a elements having myClass in their class value (links)
 	*/
 		$: function(a) {
-			if (a.substr(0, 1) == '#') return (document.getElementById(a.substr(1))) ? document.getElementById(a.substr(1)) : null;
-			else if (a.substr(0, 1) == '.') return (document.getElementsByClassName(a.substr(1))) ? document.getElementsByClassName(a.substr(1)) : null;
-			else if (a.indexOf('.') > -1) {
-				var c = document.getElementsByTagName(a.split('.')[0]),
-					d = a.split('.')[1];
-				for (var i = 0, inb = c.length; i < inb; i++) {
-					if (c[i].className.indexOf(d) > -1) {
-						return c[i];
-						exit;
+			if(document.querySelectorAll)
+				return document.querySelectorAll(a);
+			else {
+				// this should soon be removed, since all modern browsers supports querySelectorAll now
+				if (a.substr(0, 1) == '#') return (document.getElementById(a.substr(1))) ? document.getElementById(a.substr(1)) : null;
+				else if (a.substr(0, 1) == '.') return (document.getElementsByClassName(a.substr(1))) ? document.getElementsByClassName(a.substr(1)) : null;
+				else if (a.indexOf('.') > -1) {
+					var c = document.getElementsByTagName(a.split('.')[0]),
+						d = a.split('.')[1];
+					for (var i = 0, inb = c.length; i < inb; i++) {
+						if (c[i].className.indexOf(d) > -1) {
+							return c[i];
+							exit;
+						}
 					}
-				}
-			} else if (a) return (document.getElementsByTagName(a)) ? document.getElementsByTagName(a) : null;
+				} else if (a) return (document.getElementsByTagName(a)) ? document.getElementsByTagName(a) : null;
+			}
 		},
 
 		/*
 		Performs a console.log if browser supports it
+		Keep logging to false by default, console.log can create huge performance issues, specially in Cordova
 		*/
 		log: function() {
 			if ((window.console != undefined) && emy.logging==true) console.log.apply(console, arguments);
